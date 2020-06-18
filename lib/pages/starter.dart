@@ -39,7 +39,7 @@ class StarterScreen extends StatelessWidget {
                     child: FlatButton(
                       padding: EdgeInsets.all(15),
                       onPressed: () {
-                        Navigation.goToSignIn(context);
+                        Navigation.goToSignUp(context);
                       },
                       child: Text("Get Started"),
                       textColor: Colors.white,
@@ -48,14 +48,12 @@ class StarterScreen extends StatelessWidget {
                   ),
                 ),
               ],
-
             ),
           ),
-
           Expanded(
             flex: 1,
             child: Container(
-              margin: EdgeInsets.only(bottom: 20),
+              margin: EdgeInsets.only(bottom: 20,left: 20),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
