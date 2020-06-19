@@ -23,7 +23,7 @@ class _SignIn extends State<SignIn> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Toolbar(),
+            Toolbar(titleToolbar:""),
             Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

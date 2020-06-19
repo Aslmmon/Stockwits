@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Toolbar extends StatelessWidget {
+  Toolbar({this.titleToolbar});
+
+  String titleToolbar = "";
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,9 +17,18 @@ class Toolbar extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Container(
-                margin: EdgeInsets.only(left: 15, bottom: 10),
-                child: Icon(Icons.arrow_back)),
+            child: Row(
+              children: <Widget>[
+                Container(
+                    margin: EdgeInsets.only(left: 15, bottom: 10),
+                    child: Icon(Icons.arrow_back)),
+                Container(
+                    margin: EdgeInsets.only(left: 15, bottom: 10),
+                    child: titleToolbar.isNotEmpty
+                        ? Text(titleToolbar, style: TextStyle(fontSize: 18))
+                        : Text(""))
+              ],
+            ),
           ),
           Divider(color: Colors.grey)
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:stockwits/customs/ToolbarWithIcons.dart';
 
 class Navigation {
 
@@ -13,6 +14,10 @@ class Navigation {
 
   static void goToSignUp(context) {
     Navigator.pushNamed(context, '/signUp');
+  }
+
+  static void goToProfileStaticScreens(context,titlePage) {
+    Navigator.pushNamed(context, '/dummy',arguments: ToolbarWithIcons(title:titlePage));
   }
 
   static void goToForgetPassword(context) {

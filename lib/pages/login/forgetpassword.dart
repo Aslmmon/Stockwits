@@ -15,7 +15,7 @@ class ForgetPassword extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-             Toolbar(),
+             Toolbar(titleToolbar:""),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
