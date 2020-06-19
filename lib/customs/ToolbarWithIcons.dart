@@ -10,6 +10,7 @@ class ToolbarWithIcons extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
