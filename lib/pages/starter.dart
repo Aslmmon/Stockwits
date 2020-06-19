@@ -53,7 +53,7 @@ class StarterScreen extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Container(
-              margin: EdgeInsets.only(bottom: 20,left: 20),
+              margin: EdgeInsets.only(bottom: 20, left: 20),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[

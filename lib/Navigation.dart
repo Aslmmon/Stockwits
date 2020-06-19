@@ -7,6 +7,10 @@ class Navigation {
     Navigator.pushNamed(context, '/signIn');
   }
 
+  static void goToHomeScreen(context) {
+    Navigator.pushNamed(context, '/home');
+  }
+
   static void goToSignUp(context) {
     Navigator.pushNamed(context, '/signUp');
   }
