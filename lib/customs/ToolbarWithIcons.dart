@@ -14,6 +14,7 @@ class ToolbarWithIcons extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
+
               Image.asset("images/stockwits_logo.png", width: 80, height: 30),
               CustomIcon(icon: Icons.drag_handle, method: null),
               CustomIcon(icon: Icons.notifications, method: null),
