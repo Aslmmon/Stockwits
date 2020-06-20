@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "605263845381",
+    "firebase_url": "https://stockwits-6dbe8.firebaseio.com",
+    "project_id": "stockwits-6dbe8",
+    "storage_bucket": "stockwits-6dbe8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605263845381:android:8c9a1885f2f76382d6e46c",
+        "android_client_info": {
+          "package_name": "com.example.stockwits"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605263845381-fl5ninjm7cceci34hilrnqcj3317gksg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1PylX5XlOzMXWPqWj-GArJgs4k2AoJXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605263845381-fl5ninjm7cceci34hilrnqcj3317gksg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

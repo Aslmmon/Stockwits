@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:stockwits/customs/customEditText.dart';
 import 'package:stockwits/customs/customPageNameTitle.dart';
