@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stockwits/customs/ToolbarWithIcons.dart';
 import 'package:stockwits/customs/customToolbar.dart';
+import 'package:stockwits/services/Auth.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -9,6 +9,16 @@ class AuthService {
   User _userFromFirebaseUser(FirebaseUser user){
     return user != null ? User(user.email,uid: user.uid) : null;
   }
+  //sign In
+  Future signIn(String email,String password) async{
+    try{
+      AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      FirebaseUser user = result.user;
+      return _userFromFirebaseUser(user);
+    }catch(e){
+      print(e.toString());
+    }
+  }
 
   //register
   Future register(String email,String password) async{

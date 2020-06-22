@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stockwits/Navigation.dart';
 import 'package:stockwits/customs/customIcon.dart';
+import 'package:stockwits/services/Auth.dart';
 
 class ToolbarWithIcons extends StatefulWidget {
   ToolbarWithIcons({this.title});
+
   final String title;
 
   @override
@@ -13,16 +15,25 @@ class ToolbarWithIcons extends StatefulWidget {
 
 class _ToolbarWithIconsState extends State<ToolbarWithIcons> {
   Choice _selectedChoice = choices[0]; // The app's "state".
+  final AuthService _auth = AuthService();
 
-
-
-
-  void _select(Choice choice) {
+  void _select(Choice choice)  {
     // Causes the app to rebuild with the new _selectedChoice.
-    setState(() {
+    setState(()  {
       _selectedChoice = choice;
-      if(choice.id == 2 || choice.id == 3 || choice.id == 6 || choice.id == 7){
-        Navigation.goToProfileStaticScreens(context,choice.title);
+      if (choice.id == 2 ||
+          choice.id == 3 ||
+          choice.id == 6 ||
+          choice.id == 7) {
+        Navigation.goToProfileStaticScreens(context, choice.title);
+      }
+      if (choice.id == 8) {
+        dynamic result =  _auth.SignOut();
+        if (result == null) {
+          print("error");
+        } else {
+          Navigation.goToSignInWithFinish(context);
+        }
       }
     });
   }
@@ -79,7 +90,8 @@ const List<Choice> choices = const <Choice>[
   const Choice(id: 3, title: 'House Rules', icon: Icons.directions_bus),
   const Choice(id: 4, title: 'Settings', icon: Icons.directions_railway),
   const Choice(id: 5, title: 'Help', icon: Icons.directions_walk),
-  const Choice(id: 6, title: 'Terms and Conditions', icon: Icons.directions_walk),
+  const Choice(
+      id: 6, title: 'Terms and Conditions', icon: Icons.directions_walk),
   const Choice(id: 7, title: 'Privacy Policy', icon: Icons.directions_walk),
   const Choice(id: 8, title: 'Sign Out', icon: Icons.directions_walk),
 ];

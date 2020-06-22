@@ -8,11 +8,20 @@ class Navigation {
     Navigator.pushNamed(context, '/signIn');
   }
 
+
+  static void goToSignInWithFinish(context) {
+    Navigator.popAndPushNamed(context, '/signIn');
+  }
+
   static void goToHomeScreen(context) {
-    Navigator.pushNamed(context, '/home');
+    //pushNamedAndRemoveUntill , remove all backStacks
+
+    Navigator.pushNamedAndRemoveUntil(context, '/home',(Route<dynamic> route) => false);
   }
 
   static void goToSignUp(context) {
+    // push to Specific Route
+    //
     Navigator.pushNamed(context, '/signUp');
   }
 

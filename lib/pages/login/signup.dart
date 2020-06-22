@@ -86,8 +86,7 @@ class _SignUpState extends State<SignUp> {
                             child: FlatButton(
                               onPressed: () async {
                                 if (_formkey.currentState.validate()) {
-                                  dynamic result =
-                                      await _auth.register(email, password);
+                                  dynamic result = await _auth.register(email, password);
                                   if (result == null) {
                                     setState(() {
                                       error = "Please supply a valid email";
