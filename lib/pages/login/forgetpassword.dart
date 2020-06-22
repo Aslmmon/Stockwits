@@ -23,7 +23,7 @@ class ForgetPassword extends StatelessWidget {
                     child: Text(
                         "Enter your email address and we\'ll send you a \nlink to reset your password"),
                   ),
-                  EditText(textHint:"Email address"),
+                  EditText(textHint:"Email address",value: (val){},),
                   Container(
                     margin: EdgeInsets.only(top: 40, left: 20),
                     child: FlatButton(

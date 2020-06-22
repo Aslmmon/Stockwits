@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:stockwits/Navigation.dart';
 import 'package:stockwits/customs/customEditText.dart';
 import 'package:stockwits/customs/customPageNameTitle.dart';
 import 'package:stockwits/customs/customToolbar.dart';
@@ -12,6 +12,11 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final AuthService _auth = AuthService();
+  String email = "";
+  String fullName="";
+  String userName ="";
+  String password = "";
+  String error = "";
   final _formkey = GlobalKey<FormState>();
 
   @override
@@ -22,7 +27,7 @@ class _SignUpState extends State<SignUp> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Toolbar(titleToolbar:""),
+              Toolbar(titleToolbar: ""),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,16 +44,59 @@ class _SignUpState extends State<SignUp> {
                           SizedBox(
                             height: 20,
                           ),
-                          EditText(textHint: "Full Name",validationState: (val) => val.isEmpty? "Enter Full Name" : null),
-                          EditText(textHint: "Email address",validationState: (val) => val.isEmpty? "Enter Email Address":null),
-                          EditText(textHint: "Username",validationState: (val) => val.isEmpty? "Enter User Name":null),
-                          EditText(textHint: "Password (6+ characters)",validationState: (val) => val.length <6 ? "Enter Password +6 characters long":null),
+                          EditText(
+                              textHint: "Full Name",
+                              validationState: (val) =>
+                                  val.isEmpty ? "Enter Full Name" : null,
+                              value: (val) {
+                                setState(() {
+                                  fullName = val;
+                                });
+                              }),
+                          EditText(
+                              textHint: "Email address",
+                              validationState: (val) =>
+                                  val.isEmpty ? "Enter Email Address" : null,
+                              value: (val) {
+                                setState(() {
+                                  email = val;
+                                });
+                              }),
+                          EditText(
+                              textHint: "Username",
+                              validationState: (val) =>
+                                  val.isEmpty ? "Enter User Name" : null,
+                              value: (val) {
+                                setState(() {
+                                  userName = val;
+                                });
+                              }),
+                          EditText(
+                              textHint: "Password (6+ characters)",
+                              validationState: (val) => val.length < 6
+                                  ? "Enter Password +6 characters long"
+                                  : null,
+                              value: (val) {
+                                setState(() {
+                                  password = val;
+                                });
+                              }),
                           Container(
                             margin: EdgeInsets.only(top: 40, left: 20),
                             child: FlatButton(
-                              onPressed: () {
-                                if(_formkey.currentState.validate()){
-                                  print("success");
+                              onPressed: () async {
+                                if (_formkey.currentState.validate()) {
+                                  dynamic result =
+                                      await _auth.register(email, password);
+                                  if (result == null) {
+                                    setState(() {
+                                      error = "Please supply a valid email";
+                                      print(error);
+                                    });
+                                  } else {
+                                    print("Success");
+                                    Navigation.goToHomeScreen(context);
+                                  }
                                 }
                               },
                               child: Text("Sign Up"),
@@ -69,4 +117,3 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
-
