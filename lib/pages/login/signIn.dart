@@ -6,6 +6,7 @@ import 'package:stockwits/customs/customPageNameTitle.dart';
 import 'package:stockwits/customs/customToolbar.dart';
 import 'package:stockwits/services/Auth.dart';
 import 'package:stockwits/services/LocalDatabase.dart';
+import 'package:stockwits/shared/loading.dart';
 import 'forgetpassword.dart';
 
 class SignIn extends StatefulWidget {
@@ -23,6 +24,8 @@ class _SignIn extends State<SignIn> {
   String password = "";
   String error = "";
   Future<String> saveEmail ;
+  bool loading = false;
+
   final _formkey = GlobalKey<FormState>();
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
@@ -37,7 +40,7 @@ class _SignIn extends State<SignIn> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       resizeToAvoidBottomInset: false, // set it to false
       body: SafeArea(
         child: Column(
@@ -90,14 +93,18 @@ class _SignIn extends State<SignIn> {
                       child: FlatButton(
                         onPressed: () async {
                           if (_formkey.currentState.validate()) {
-                            dynamic result =
-                                await _auth.signIn(email, password);
+                            setState(() {
+                              loading = true;
+                            });
+                            dynamic result = await _auth.signIn(email, password);
                             if (result == null) {
                               setState(() {
+                                loading = false;
                                 error = "Please Enter a valid email";
                                 print(error);
                               });
                             } else {
+                              loading = false;
                               print("Success");
                               local.saveEmailAndPassword(email, password);
                               Navigation.goToHomeScreen(context);
