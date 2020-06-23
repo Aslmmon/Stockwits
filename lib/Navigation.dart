@@ -13,6 +13,10 @@ class Navigation {
     Navigator.popAndPushNamed(context, '/signIn');
   }
 
+  static void goToHomeStarted(context) {
+    Navigator.pushNamedAndRemoveUntil(context, '/',(Route<dynamic> route) => false);
+  }
+
   static void goToHomeScreen(context) {
     //pushNamedAndRemoveUntill , remove all backStacks
 

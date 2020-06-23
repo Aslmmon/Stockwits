@@ -9,7 +9,20 @@ class AuthService {
   User _userFromFirebaseUser(FirebaseUser user){
     return user != null ? User(user.email,uid: user.uid) : null;
   }
-  //sign In
+
+  /**
+   * Reset Password
+   */
+  Future resetPassword(String email) async{
+    try{
+       await _auth.sendPasswordResetEmail(email: email);
+    }catch(e){
+      print(e.toString());
+    }
+  }
+  /**
+   * Sign In
+   */
   Future signIn(String email,String password) async{
     try{
       AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password);
@@ -20,7 +33,9 @@ class AuthService {
     }
   }
 
-  //register
+  /**
+   * Register
+   */
   Future register(String email,String password) async{
     try{
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
@@ -31,7 +46,9 @@ class AuthService {
     }
   }
 
-  // sign Out
+  /**
+   * Sign Out
+   */
   Future SignOut() async{
     try{
       return await _auth.signOut();
