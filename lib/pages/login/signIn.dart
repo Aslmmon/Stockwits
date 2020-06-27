@@ -19,25 +19,56 @@ class _SignIn extends State<SignIn> {
   var local = LocalDatabase();
   bool checkBoxValue = false;
   String email = "";
+  bool saved = false;
   String fullName = "";
   String userName = "";
   String password = "";
   String error = "";
-  Future<String> saveEmail ;
+  Future<String> saveEmail;
   bool loading = false;
 
   final _formkey = GlobalKey<FormState>();
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
+  Future<String> _getEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    final EmailNeeded = await prefs.getString("email");
+    final password = await prefs.getString("password");
+    if (EmailNeeded == null || password == null) {
+      return "";
+    }
+    saved = true;
+    return EmailNeeded;
+  }
+
+
+  Future<String> _getPassword() async {
+    final prefs = await SharedPreferences.getInstance();
+    final password = await prefs.getString("password");
+    if ( password == null) {
+      return "";
+    }
+    saved = true;
+    return password;
+  }
+
 
   @override
-  void initState()  {
+  void initState() {
     super.initState();
-    saveEmail = _prefs.then((SharedPreferences prefs) {
-      return (prefs.getString('email') ?? "");
-    });
-    print(saveEmail);
+     _getEmail().then((value){
+    email = value;
+    setState(() {
+      saved = true;
+    });});
+
+    _getPassword().then((value){
+      password = value;
+      setState(() {
+        saved = true;
+      });});
   }
+
   @override
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
@@ -57,7 +88,8 @@ class _SignIn extends State<SignIn> {
                     pageNameTitle(pageName: "Sign In"),
                     SizedBox(height: 30),
                     EditText(
-                        textHint: "Username or Email",
+                        textHint:"Username or Email",
+                        controller:  TextEditingController(text: saved ? email:"") ,
                         value: (val) {
                           setState(() {
                             email = val;
@@ -65,6 +97,8 @@ class _SignIn extends State<SignIn> {
                         }),
                     EditText(
                         textHint: "Password",
+                        controller:  TextEditingController(text: saved ? password:"") ,
+
                         value: (val) {
                           setState(() {
                             password = val;
@@ -96,7 +130,8 @@ class _SignIn extends State<SignIn> {
                             setState(() {
                               loading = true;
                             });
-                            dynamic result = await _auth.signIn(email, password);
+                            dynamic result = await _auth.signIn(
+                                email, password);
                             if (result == null) {
                               setState(() {
                                 loading = false;
@@ -106,7 +141,8 @@ class _SignIn extends State<SignIn> {
                             } else {
                               loading = false;
                               print("Success");
-                              local.saveEmailAndPassword(email, password);
+                              print(checkBoxValue);
+                              checkBoxValue  ? local.saveEmailAndPassword(email, password) : false;
                               Navigation.goToHomeScreen(context);
                             }
                           }

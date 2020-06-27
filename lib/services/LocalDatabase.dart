@@ -6,12 +6,8 @@ class LocalDatabase {
 
   void saveEmailAndPassword(String email, String password) async {
     final SharedPreferences prefs = await _prefs;
-    prefs.setString("email", email).then((bool success) {
-      return success;
-    });
-    prefs.setString("password", password).then((bool success) {
-      return success;
-    });
+    prefs.setString("email", email);
+    prefs.setString("password", password);
   }
 
   Future<String> getEmail() async {
